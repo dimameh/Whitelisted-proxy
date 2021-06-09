@@ -1,9 +1,10 @@
 import crypto from 'crypto-js'
+import config from '../core/config'
 
 const hasher = {}
 
 hasher.getTokenByLoginAndPassword = (login, password) => {
-  return crypto.MD5(password + login).toString()
+  return crypto.AES.encrypt(login + password, config.SECRET_KEY).toString()
 }
 
 export default hasher
